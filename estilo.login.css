@@ -1,0 +1,105 @@
+/* Reset e base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Corpo da página */
+body {
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Container do formulário */
+.form-container {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+}
+
+/* Título */
+.form-container h2 {
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+
+/* Grupos de entrada */
+.form-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Labels */
+.form-group label {
+  margin-bottom: 8px;
+  color: #444;
+  font-weight: bold;
+}
+
+/* Inputs, Textareas e Selects */
+.form-group input,
+.form-group textarea,
+.form-group select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: #28a745;
+  outline: none;
+}
+
+/* Link extra */
+.add-responsavel {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  color: #0066cc;
+  text-decoration: none;
+}
+
+.add-responsavel:hover {
+  text-decoration: underline;
+}
+
+/* Botão */
+button[type="submit"] {
+  background-color: #28a745;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #218838;
+}
+
+
+.form-container {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 0 4px #28a74533; /* borda verde suave ao redor */
+  border: 2px solid #28a745; /* borda verde principal */
+  margin: 40px auto; /* margem externa para dar espaçamento vertical */
+  width: 100%;
+  max-width: 500px;
+}

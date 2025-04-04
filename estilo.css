@@ -1,0 +1,219 @@
+/* MENU ------------------------------------------------------------------------------------------ */
+
+/* Estilos gerais */
+body {
+    background-color: #f4f4f4; /* Cor de fundo */
+    margin: 0; /* Remove margens padrão */
+    padding: 0; /* Remove preenchimento padrão */
+}
+
+p {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; /* Fonte para parágrafos */
+}
+
+/* Wrapper para centralizar o conteúdo */
+.wrapper {
+    position: fixed; /* Posicionamento fixo */
+    top: 50%; /* Centraliza verticalmente */
+    left: 50%; /* Centraliza horizontalmente */
+    transform: translate(-50%, -50%); /* Ajusta a posição para o centro exato */
+}
+
+/* Links */
+a {
+    display: block; /* Exibe como bloco */
+    width: 200px; /* Largura fixa */
+    height: 40px; /* Altura fixa */
+    line-height: 40px; /* Alinha verticalmente o texto */
+    font-size: 18px; /* Tamanho da fonte */
+    font-family: sans-serif; /* Fonte para links */
+    text-decoration: none; /* Remove sublinhado */
+    background-color: rgb(100, 177, 97); /* Cor de fundo */
+    color: #333; /* Cor do texto */
+    border: 2px solid #333; /* Borda */
+    letter-spacing: 2px; /* Espaçamento entre letras */
+    text-align: center; /* Centraliza texto */
+    position: relative; /* Para posicionamento absoluto dos pseudo-elementos */
+    transition: all .35s; /* Efeito de transição */
+}
+
+a span {
+    position: relative; /* Para sobreposição de z-index */
+    z-index: 2; /* Coloca o texto acima do fundo */
+}
+
+a:after {
+    position: absolute; /* Posiciona o pseudo-elemento */
+    content: ""; /* Necessário para pseudo-elementos */
+    top: 0; /* Alinha ao topo */
+    left: 0; /* Alinha à esquerda */
+    width: 0; /* Inicia com largura 0 */
+    height: 100%; /* Altura total do link */
+    background: #1a311c; /* Cor de fundo do efeito */
+    transition: all .35s; /* Efeito de transição */
+}
+
+a:hover {
+    color: #fff; /* Muda a cor do texto ao passar o mouse */
+}
+
+a:hover:after {
+    width: 100%; /* Expande o fundo ao passar o mouse */
+}
+
+/* Navegação */
+nav {
+    background-color: rgb(42, 88, 58); /* Cor de fundo da navegação */
+    padding: 10px 0; /* Espaçamento interno */
+}
+
+nav ul {
+    list-style-type: none; /* Remove marcadores da lista */
+    margin: 0; /* Remove margem */
+    padding: 0; /* Remove preenchimento */
+    display: flex; /* Exibe itens em linha */
+    justify-content: center; /* Centraliza os itens */
+}
+
+nav ul li {
+    margin: 0 15px; /* Espaçamento entre os itens da lista */
+}
+
+nav ul li a {
+    color: white; /* Cor do texto do link */
+    text-decoration: none; /* Remove sublinhado */
+    font-size: 18px; /* Tamanho da fonte do link */
+    transition: color 0.3s; /* Transição da cor */
+}
+
+/* Banner */
+.slider {
+    width: 70%; /* Largura do slider */
+    max-width: 800px; /* Largura máxima */
+    margin: 0; /* Remove margens */
+    overflow: hidden; /* Oculta o excesso */
+    position: relative; /* Para posicionamento dos slides */
+}
+
+.slides {
+    display: flex; /* Exibe os slides em linha */
+    width: 98%; /* Largura total */
+    animation: slideAnimation 9s infinite; /* Animação do slide */
+}
+
+.slide {
+    width: 100%; /* Cada slide ocupa 100% da largura do slider */
+    flex-shrink: 0; /* Impede que o slide encolha */
+}
+
+.slide img {
+    width: 100%; /* Imagem ocupa 100% da largura do slide */
+    display: block; /* Remove espaços abaixo da imagem */
+}
+
+@keyframes slideAnimation {
+    0% { transform: translateX(0); }
+    33.33% { transform: translateX(-100%); }
+    66.66% { transform: translateX(-200%); }
+    100% { transform: translateX(0); }
+}
+
+/* Card --------------------------------------------------------------------------------------- */
+.container {
+    display: flex; /* Exibe os cartões em linha */
+    gap: 20px; /* Espaçamento entre cartões */
+    flex-wrap: wrap; /* Permite quebra de linha */
+    width: 70%; /* Largura da container */
+    margin: 20px auto; /* Margens automáticas para centralizar */
+    text-align: center; /* Centraliza o texto */
+}
+
+.card {
+    background-color: white; /* Cor de fundo do cartão */
+    border: 1px solid red; /* Borda do cartão */
+    border-radius: 8px; /* Bordas arredondadas */
+    padding: 20px; /* Espaçamento interno */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra do cartão */
+    flex: 1; /* Permite que o cartão ocupe espaço disponível */
+    max-width: 300px; /* Largura máxima do cartão */
+}
+
+.card h2 {
+    margin-top: 0; /* Remove margem superior */
+    font-size: 1.5em; /* Tamanho da fonte do título */
+    color: #333; /* Cor do título */
+}
+
+.card p {
+    color: #000000; /* Cor do texto do parágrafo */
+}
+
+.pokemon {
+    width: auto; /* Largura automática para imagens de Pokémon */
+}
+
+/* Galeria ---------------------------------------------------------------------- */
+.galeria-container {
+    display: flex; /* Exibe itens da galeria em linha */
+    justify-content: space-around; /* Espaçamento igual entre itens */
+    flex-wrap: wrap; /* Permite quebra de linha */
+    padding: 20px; /* Espaçamento interno */
+    width: 80%; /* Largura da galeria */
+    margin: auto; /* Margens automáticas para centralizar */
+}
+
+.galeria-item {
+    margin: 10px; /* Margem ao redor dos itens */
+    border: 2px solid rgb(0, 0, 0); /* Borda dos itens */
+    border-radius: 5px; /* Bordas arredondadas */
+    overflow: hidden; /* Oculta excesso de conteúdo */
+    width: 200px; /* Largura fixa dos itens */
+    box-sizing: border-box; /* Inclui bordas e preenchimentos no tamanho total */
+    transition: all .3s; /* Transição suave para efeitos */
+}
+
+.galeria-item img {
+    width: 100%; /* Imagem ocupa 100% da largura do item */
+    height: auto; /* Altura automática */
+}
+
+.galeria-container:hover .galeria-item {
+    opacity: 0.5; /* Reduz a opacidade ao passar o mouse na galeria */
+}
+
+.galeria-item:hover {
+    opacity: 1; /* Opacidade total ao passar o mouse */
+    transform: translateY(-20px); /* Move o item para cima */
+}
+
+@media (max-width: 600px) {
+    .galeria-item {
+        width: 100%; /* Largura total em telas pequenas */
+    }
+}
+
+/* Estilos dos botões */
+.container img {
+    max-width: 100%; /* Limita a largura da imagem */
+    height: auto; /* Altura automática */
+    display: block; /* Remove espaços abaixo da imagem */
+}
+
+.button {
+    display: inline-block; /* Exibe como bloco inline */
+    padding: 10px 20px; /* Espaçamento interno */
+    margin-top: 10px; /* Margem superior */
+    font-size: 16px; /* Tamanho da fonte */
+    color: white; /* Cor do texto */
+    background-color: red; /* Cor de fundo do botão */
+    border: none; /* Remove borda */
+    border-radius: 5px; /* Bordas arredondadas */
+    cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
+}
+
+/* Rodapé */
+.rodape {
+    background-color: rgb(42, 88, 58); /* Cor de fundo do rodapé */
+    color: white; /* Cor do texto */
+}
+
