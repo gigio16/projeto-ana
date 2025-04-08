@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EcoWeb - Pontos de Coleta</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="mapa.css">
+  <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" href="logo_EcoWeb.png" type="image/x-icon">
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+  <header>
+    <div class="navbar">
+      <div class="logo-container">
+      <img src="logo_EcoWeb.png" alt="Logo EcoWeb">
+      <h1 class="logo">EcoWeb</h1>
+    </div>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="calendario.html">Calendário</a></li>
+          <li><a href="login.html">Login</a></li>
+          <li><a href="cadastro.html">Cadastro</a></li>
+          <li><a href="metas.html">Metas</a></li>
+          <li><a href="doacao.html">Doação de Alimentos</a></li>
+          <li><a href="mapa.html">Mapa</a></li>
+          <li><a href="sobre.html">Sobre Nós</a></li>
+          <li><a href="usuario.html">Usuário</a></li>
+        </ul>
+      </nav>
+      <div class="search-bar">
+        <input type="text" placeholder="Pesquisar...">
+        <button>🔍</button>
+      </div>
+    </div>
+  </header>
+  
+
+  <section class="info-container">
+    <div class="info-box">
+      <h2>Por que é importante coletar o lixo?</h2>
+      <p>A coleta de lixo é essencial para evitar a contaminação do meio ambiente, 
+        a disseminação de doenças, o mau cheiro e a proliferação de vetores. 
+        Além disso, a coleta seletiva também contribui para a redução do impacto ambiental 
+        e ajuda a evitar alagamentos e inundações.</p>
+    </div>
+
+    <div class="info-box">
+      <h2>Separar corretamente também faz a diferença!</h2>
+      <p>Separar os resíduos recicláveis dos orgânicos facilita o trabalho de cooperativas, 
+        aumenta as chances de reaproveitamento de materiais e diminui o volume de lixo 
+        destinado aos aterros sanitários. Essa atitude simples faz parte da construção 
+        de um futuro mais limpo e sustentável.</p>
+    </div>
+  </section>
+<center><h1 class="frase">Seu lixo tem um destino. Não deixe que seja o planeta!</h1></center>
+  <main>
+    <div id="map"></div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 EcoWeb - Sustentabilidade em ação</p>
+  </footer>
+</body>
+<script src="mapa.js"></script>
+</html>

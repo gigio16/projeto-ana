@@ -1,0 +1,167 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #fefcfd;
+    color: #4b8055;
+  }
+  
+  /* Menu de navegação */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #70cb7f;
+    padding: 15px 30px;
+    flex-wrap: wrap;
+  }
+  
+  .logo {
+    color: #fefcfd;
+    font-size: 2em;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .nav-links li a {
+    color: #fefcfd;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+  
+  .nav-links li a:hover {
+    color: #4b8055;
+  }
+
+  /* Logo */
+
+  .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .logo-container img {
+    height: 40px;
+    width: 40px;
+    object-fit: contain;
+  }  
+  
+  
+  /* Barra de pesquisa */
+  .search-bar {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .search-bar input {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px 0 0 6px;
+    outline: none;
+  }
+  
+  .search-bar button {
+    padding: 8px 12px;
+    border: none;
+    background-color: #4b8055;
+    color: white;
+    border-radius: 0 6px 6px 0;
+    cursor: pointer;
+  }
+  
+  .search-bar button:hover {
+    background-color: #376b44;
+  }
+  
+  /* Responsividade */
+  @media (max-width: 768px) {
+    .navbar {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .search-bar {
+      margin-top: 15px;
+      width: 100%;
+    }
+  
+    .search-bar input {
+      flex: 1;
+      width: 70%;
+    }
+  
+    .search-bar button {
+      width: 30%;
+    }
+  }
+  
+  /* Containers com texto */
+
+  .info-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    padding: 30px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .info-box {
+    flex: 1 1 300px;
+    background-color: #ebddc4;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    color: #4b8055;
+  }
+  
+  .info-box h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+  
+  .info-box p {
+    font-size: 1em;
+    line-height: 1.6;
+  }
+
+  /* frase impactante */
+
+  .frase {
+    font-family: 'Indie Flower', cursive;
+    font-size: 2.4em;
+    letter-spacing: 1px;
+  }  
+  
+  /* mapa */
+  
+  #map {
+    height: 80vh;
+    margin: 20px;
+    border-radius: 12px;
+    border: 4px solid #ebddc4;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+/* footer */
+
+  footer {
+    background-color: #ebddc4;
+    color: #4b8055;
+    text-align: center;
+    padding: 15px;
+    font-weight: bold;
+  }
+  
