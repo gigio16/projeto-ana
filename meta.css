@@ -42,6 +42,38 @@ header nav ul li a {
 header nav ul li a:hover {
     text-decoration: underline;
 }
+ 
+.remove, .edit, .status-btn {
+    margin-left: 10px;
+    cursor: pointer;
+    color: blue;
+}
+
+.tarefa {
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}
+
+.comentarios {
+    margin-top: 10px;
+}
+
+.notificacao {
+    background-color: #d4edda;
+    padding: 10px;
+    border: 1px solid #c3e6cb;
+    margin-bottom: 10px;
+    display: none;
+}
+
+.filtros {
+    margin: 20px 0;
+}
+
+.filtros label {
+    margin-right: 10px;
+}
 
 section {
     padding: 40px 0;

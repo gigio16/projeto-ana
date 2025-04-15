@@ -5,21 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Metas</title>
     <link rel="stylesheet" href="meta.css">
+  
 </head>
 <body>
     <header>
         <div class="container">
             <h1>Metas de Reciclagem para um Futuro Sustentável</h1>
             <nav>
-                <ul> 
+                <ul>
                     <li><a href="#SaibaMais">Saiba mais</a></li>
                     <li><a href="#objetivo">Minhas metas</a></li>
-                </ul>
-                <ul> 
-                    <li>
-                        <h3>Estabeleça suas metas</h3>
-                        <h3>Ajude o meio ambiente se divertindo!</h3>
-                    </li>
                 </ul>
             </nav>
         </div>
@@ -32,30 +27,38 @@
         </div>
     </section>
 
-    <section id="metas">
-        <div class="container">
-            <h2>Metas de Reciclagem</h2>
-            <ul>
-                <li>Reciclar 50% dos resíduos domésticos até 2025.</li>
-                <li>Reduzir o desperdício de alimentos em 30% até 2030.</li>
-                <li>Promover a reciclagem de plásticos em 80% até 2040.</li>
-                <li>Incentivar a compostagem de resíduos orgânicos em 70% até 2035.</li>
-            </ul>
-        </div>
-    </section>
-
     <section id="objetivo">
         <div class="container">
-            <h2>Descreva a abaixo suas metas</h2>
-            <p>Aqui é o lugar onde você irá colocar suas metas, sendo as já concluídas e as que você ainda quer concluir.</p>
-
-            <h1>Minhas Metas</h1>
-            <input type="text" id="metaInput" placeholder="Digite sua meta aqui">
+            <h2>Descreva abaixo suas metas</h2>
+            <input type="text" id="metaInput" placeholder="Digite sua meta">
+            <select id="categoriaInput">
+                <option value="manutenção">Manutenção</option>
+                <option value="eventos">Eventos</option>
+                <option value="melhorias">Melhorias</option>
+            </select>
             <button onclick="adicionarMeta()">Adicionar Meta</button>
 
-            <ul id="listaMetas">
-                <!-- As metas serão listadas aqui -->
-            </ul>
+            <div class="notificacao" id="notificacao">Meta adicionada com sucesso!</div>
+
+            <div class="filtros">
+                <label for="filtroStatus">Filtrar por status:</label>
+                <select id="filtroStatus" onchange="carregarMetas()">
+                    <option value="todos">Todos</option>
+                    <option value="pendente">Pendente</option>
+                    <option value="em andamento">Em andamento</option>
+                    <option value="concluída">Concluída</option>
+                </select>
+
+                <label for="filtroCategoria">Filtrar por categoria:</label>
+                <select id="filtroCategoria" onchange="carregarMetas()">
+                    <option value="todas">Todas</option>
+                    <option value="manutenção">Manutenção</option>
+                    <option value="eventos">Eventos</option>
+                    <option value="melhorias">Melhorias</option>
+                </select>
+            </div>
+
+            <ul id="listaMetas"></ul>
         </div>
     </section>
 
@@ -66,52 +69,96 @@
     </footer>
 
     <script>
-        // Função para carregar as metas salvas no localStorage
         function carregarMetas() {
             const metas = JSON.parse(localStorage.getItem('metas')) || [];
             const listaMetas = document.getElementById('listaMetas');
-            listaMetas.innerHTML = '';  // Limpa a lista antes de preencher novamente
+            listaMetas.innerHTML = '';
+
+            const filtroStatus = document.getElementById('filtroStatus').value;
+            const filtroCategoria = document.getElementById('filtroCategoria').value;
 
             metas.forEach((meta, index) => {
-                const li = document.createElement('li');
-                li.textContent = meta;
+                if (
+                    (filtroStatus === 'todos' || meta.status === filtroStatus) &&
+                    (filtroCategoria === 'todas' || meta.categoria === filtroCategoria)
+                ) {
+                    const li = document.createElement('li');
+                    li.classList.add('tarefa');
 
-                // Adiciona o botão de remover à meta
-                const removeButton = document.createElement('span');
-                removeButton.textContent = ' Remover';
-                removeButton.classList.add('remove');
-                removeButton.onclick = () => removerMeta(index);
+                    li.innerHTML = `
+                        <strong>${meta.texto}</strong> <br>
+                        <em>Status:</em> ${meta.status} |
+                        <em>Categoria:</em> ${meta.categoria}
+                        <span class="edit" onclick="editarMeta(${index})">Editar</span>
+                        <span class="remove" onclick="removerMeta(${index})">Excluir</span><br>
+                        <button class="status-btn" onclick="alterarStatus(${index}, 'pendente')">Pendente</button>
+                        <button class="status-btn" onclick="alterarStatus(${index}, 'em andamento')">Em Andamento</button>
+                        <button class="status-btn" onclick="alterarStatus(${index}, 'concluída')">Concluída</button>
 
-                li.appendChild(removeButton);
-                listaMetas.appendChild(li);
+                        <div class="comentarios">
+                            <label>Comentário:</label>
+                            <input type="text" onkeydown="if(event.key==='Enter'){adicionarComentario(${index}, this.value); this.value=''}">
+                            <ul id="comentarios-${index}">${(meta.comentarios || []).map(com => `<li>${com}</li>`).join('')}</ul>
+                        </div>
+                    `;
+                    listaMetas.appendChild(li);
+                }
             });
         }
 
-        // Função para adicionar uma meta
         function adicionarMeta() {
             const metaInput = document.getElementById('metaInput');
-            const meta = metaInput.value.trim();
+            const categoriaInput = document.getElementById('categoriaInput');
+            const texto = metaInput.value.trim();
+            const categoria = categoriaInput.value;
 
-            if (meta) {
+            if (texto) {
                 const metas = JSON.parse(localStorage.getItem('metas')) || [];
-                metas.push(meta);
+                metas.push({ texto, status: 'pendente', categoria, comentarios: [] });
                 localStorage.setItem('metas', JSON.stringify(metas));
-                metaInput.value = '';  // Limpa o campo de entrada
-                carregarMetas();  // Atualiza a lista
+                metaInput.value = '';
+                document.getElementById('notificacao').style.display = 'block';
+                setTimeout(() => document.getElementById('notificacao').style.display = 'none', 3000);
+                carregarMetas();
             } else {
                 alert('Por favor, digite uma meta.');
             }
         }
 
-        // Função para remover uma meta
         function removerMeta(index) {
             const metas = JSON.parse(localStorage.getItem('metas')) || [];
             metas.splice(index, 1);
             localStorage.setItem('metas', JSON.stringify(metas));
-            carregarMetas();  // Atualiza a lista
+            carregarMetas();
         }
 
-        // Carregar as metas ao carregar a página
+        function editarMeta(index) {
+            const novasMetas = JSON.parse(localStorage.getItem('metas')) || [];
+            const novaMeta = prompt("Edite sua meta:", novasMetas[index].texto);
+            if (novaMeta !== null) {
+                novasMetas[index].texto = novaMeta.trim();
+                localStorage.setItem('metas', JSON.stringify(novasMetas));
+                carregarMetas();
+            }
+        }
+
+        function alterarStatus(index, novoStatus) {
+            const metas = JSON.parse(localStorage.getItem('metas')) || [];
+            metas[index].status = novoStatus;
+            localStorage.setItem('metas', JSON.stringify(metas));
+            carregarMetas();
+        }
+
+        function adicionarComentario(index, comentario) {
+            if (comentario.trim()) {
+                const metas = JSON.parse(localStorage.getItem('metas')) || [];
+                metas[index].comentarios = metas[index].comentarios || [];
+                metas[index].comentarios.push(comentario);
+                localStorage.setItem('metas', JSON.stringify(metas));
+                carregarMetas();
+            }
+        }
+
         window.onload = carregarMetas;
     </script>
 </body>
