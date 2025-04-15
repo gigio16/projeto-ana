@@ -1,9 +1,9 @@
-/* MENU ------------------------------------------------------------------------------------------ */
+
 
 /* Estilos gerais */
 body {
     background-color: #f4f4f4; /* Cor de fundo */
-    margin: 0; /* Remove margens padrão */
+    margin:0; /* Remove margens padrão */
     padding: 0; /* Remove preenchimento padrão */
 }
 
@@ -21,15 +21,15 @@ p {
 
 /* Links */
 a {
-    display: block; /* Exibe como bloco */
-    width: 200px; /* Largura fixa */
-    height: 40px; /* Altura fixa */
+    display:table; /* Exibe como bloco */
+    width: 150px; /* Largura fixa */
+    height: 30px; /* Altura fixa */
     line-height: 40px; /* Alinha verticalmente o texto */
     font-size: 18px; /* Tamanho da fonte */
     font-family: sans-serif; /* Fonte para links */
     text-decoration: none; /* Remove sublinhado */
     background-color: rgb(100, 177, 97); /* Cor de fundo */
-    color: #333; /* Cor do texto */
+    color: #ffffff; /* Cor do texto */
     border: 2px solid #333; /* Borda */
     letter-spacing: 2px; /* Espaçamento entre letras */
     text-align: center; /* Centraliza texto */
@@ -49,7 +49,7 @@ a:after {
     left: 0; /* Alinha à esquerda */
     width: 0; /* Inicia com largura 0 */
     height: 100%; /* Altura total do link */
-    background: #1a311c; /* Cor de fundo do efeito */
+    background: #1e4621; /* Cor de fundo do efeito */
     transition: all .35s; /* Efeito de transição */
 }
 
@@ -63,29 +63,50 @@ a:hover:after {
 
 /* Navegação */
 nav {
-    background-color: rgb(42, 88, 58); /* Cor de fundo da navegação */
-    padding: 10px 0; /* Espaçamento interno */
+    background-color: rgb(42, 88, 58);
+    padding: 10px 0;
+    width: 100%;
+    overflow-x: auto; /* Permite rolagem horizontal se necessário */
 }
 
 nav ul {
-    list-style-type: none; /* Remove marcadores da lista */
-    margin: 0; /* Remove margem */
-    padding: 0; /* Remove preenchimento */
-    display: flex; /* Exibe itens em linha */
-    justify-content: center; /* Centraliza os itens */
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Permite que os itens quebrem para nova linha */
+    min-width: fit-content; /* Garante que a lista não quebre desnecessariamente */
 }
 
 nav ul li {
-    margin: 0 15px; /* Espaçamento entre os itens da lista */
+    margin: 5px 10px; /* Reduzi a margem para economizar espaço */
+    white-space: nowrap; /* Impede que o texto quebre em várias linhas */
 }
 
 nav ul li a {
-    color: white; /* Cor do texto do link */
-    text-decoration: none; /* Remove sublinhado */
-    font-size: 18px; /* Tamanho da fonte do link */
-    transition: color 0.3s; /* Transição da cor */
+    color: white;
+    text-decoration: none;
+    font-size: 16px; /* Reduzi um pouco o tamanho da fonte */
+    transition: color 0.3s;
+    padding: 5px 10px; /* Adicionei padding para melhor toque */
 }
 
+/* Estilo para telas menores */
+@media (max-width: 768px) {
+    nav ul {
+        justify-content: flex-start; /* Alinha à esquerda em telas pequenas */
+    }
+    
+    nav ul li a {
+        font-size: 14px; /* Tamanho menor para telas pequenas */
+    }
+    
+    /* Remove os elementos <hr> visuais */
+    nav hr {
+        display: none;
+    }
+}
 /* Banner */
 .slider {
     width: 70%; /* Largura do slider */
@@ -118,26 +139,43 @@ nav ul li a {
     100% { transform: translateX(0); }
 }
 
+.search{
+    text-align: center;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    
+}
 /* Card --------------------------------------------------------------------------------------- */
+/* Container dos Cards */
 .container {
-    display: flex; /* Exibe os cartões em linha */
-    gap: 20px; /* Espaçamento entre cartões */
-    flex-wrap: wrap; /* Permite quebra de linha */
-    width: 70%; /* Largura da container */
-    margin: 20px auto; /* Margens automáticas para centralizar */
-    text-align: center; /* Centraliza o texto */
+    display: flex;
+    flex-wrap: wrap; /* Permite que os cards quebrem para a próxima linha */
+    justify-content: center; /* Centraliza os cards horizontalmente */
+    gap: 20px; /* Espaçamento entre os cards */
+    width: 80%; /* Ajuste a largura conforme necessário */
+    margin: 20px auto;
+    text-align: center;
 }
 
+/* Estilo dos Cards */
 .card {
-    background-color: white; /* Cor de fundo do cartão */
-    border: 1px solid red; /* Borda do cartão */
-    border-radius: 8px; /* Bordas arredondadas */
-    padding: 20px; /* Espaçamento interno */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra do cartão */
-    flex: 1; /* Permite que o cartão ocupe espaço disponível */
-    max-width: 300px; /* Largura máxima do cartão */
+    background-color: white;
+    border: 1px solid red;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: calc(50% - 40px); /* 50% do container menos o gap */
+    max-width: 300px; /* Largura máxima do card */
+    box-sizing: border-box; /* Inclui padding e border na largura */
 }
 
+/* Ajuste para telas menores */
+@media (max-width: 768px) {
+    .card {
+        width: calc(100% - 40px); /* Em telas pequenas, 1 card por linha */
+    }
+}
 .card h2 {
     margin-top: 0; /* Remove margem superior */
     font-size: 1.5em; /* Tamanho da fonte do título */
@@ -205,7 +243,7 @@ nav ul li a {
     margin-top: 10px; /* Margem superior */
     font-size: 16px; /* Tamanho da fonte */
     color: white; /* Cor do texto */
-    background-color: red; /* Cor de fundo do botão */
+    background-color: rgb(8, 116, 22); /* Cor de fundo do botão */
     border: none; /* Remove borda */
     border-radius: 5px; /* Bordas arredondadas */
     cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
@@ -216,4 +254,3 @@ nav ul li a {
     background-color: rgb(42, 88, 58); /* Cor de fundo do rodapé */
     color: white; /* Cor do texto */
 }
-
