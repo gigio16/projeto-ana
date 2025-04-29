@@ -74,7 +74,7 @@ nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    display: flex;
+    display:flex;
     justify-content: center;
     flex-wrap: wrap; /* Permite que os itens quebrem para nova linha */
     min-width: fit-content; /* Garante que a lista não quebre desnecessariamente */

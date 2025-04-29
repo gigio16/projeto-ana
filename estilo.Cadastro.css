@@ -15,8 +15,39 @@ body {
   min-height: 100vh;
 }
 
+/* Back Button */
+.back-button {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 99;
+}
+
+.btn-back {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 15px;
+  background-color: rgb(42, 88, 58);
+  color: white;
+  border-radius: 4px;
+  text-decoration: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
+}
+
+.btn-back i {
+  margin-right: 5px;
+}
+
+.btn-back:hover {
+  background-color: rgb(60, 144, 89);
+  transform: translateX(-3px);
+}
+
+
 /* Container do formulário */
 .form-container {
+  justify-content: center;
   background-color: #fff;
   padding: 30px;
   border-radius: 12px;
@@ -93,5 +124,6 @@ button[type="submit"]:hover {
   margin: 40px auto; /* margem externa para dar espaçamento vertical */
   width: 100%;
   max-width: 500px;
+  justify-content: center;
 }
 
