@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarefas</title>
+    <link rel="stylesheet" href="tarefa.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Tarefas de Reciclagem para um Futuro Sustentável</h1>
+            <nav>
+                <ul> 
+                    <li><a href="#SaibaMais">Saiba mais</a></li>
+                    <li><a href="#objetivo">Minhas Tarefas</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="SaibaMais">
+        <div class="container">
+            <h2>Saiba mais</h2>
+            <p>A reciclagem é uma das principais estratégias para reduzir o impacto ambiental causado pelo acúmulo de lixo. Estabelecer metas de reciclagem claras é fundamental para alcançar uma sociedade mais sustentável.</p>
+        </div>
+    </section>
+
+    <section id="metas">
+        <div class="container">
+            <h2>Ideias de Tarefas de Reciclagem </h2>
+            <ul>
+                <li>Reciclar 50% dos resíduos domésticos</li>
+                <li>Reduzir o desperdício de alimentos</li>
+                <li>Promover a reciclagem de plásticos</li>
+                <li>Incentivar a compostagem de resíduos orgânicos</li>
+            </ul>
+        </div>
+    </section>
+    <section id="objetivo">
+        <div class="container">
+            <h2>Descreva a abaixo suas tarefas que já foram cumpridas ou estão em progresso</h2>
+            <p>Aqui é o lugar onde você irá colocar suas tarefas, sendo as já concluídas e as que você ainda quer concluir.</p>
+
+            <h1>Minhas Tarefas</h1>
+            <h4>Use o check box para de auxilixar nas tarefas feitas, use o "remover" para tirar alguma tarefa de seu desejo. As tarefas não "checadas", são as que estão em andamento!</h4>
+            <h4>Não tenha pressa de terminar suas tarefas!</h4>
+            <input type="text" id="metaInput" placeholder="Digite sua meta aqui">
+            <button onclick="adicionarMeta()">Adicionar Tarefas</button>
+
+            <ul id="listaMetas">
+                <!-- As metas serão listadas aqui -->
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 ecoweb. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Função para carregar as metas salvas no localStorage
+        function carregarMetas() {
+            const metas = JSON.parse(localStorage.getItem('metas')) || [];
+            const listaMetas = document.getElementById('listaMetas');
+            listaMetas.innerHTML = '';  // Limpa a lista antes de preencher novamente
+
+            metas.forEach((meta, index) => {
+                const li = document.createElement('li');
+
+                // Cria o checkbox para cada tarefa
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.checked = meta.concluida;
+                checkbox.className = 'checkbox-meta';
+                checkbox.onchange = () => {
+                    meta.concluida = checkbox.checked;
+                    metas[index] = meta;  // Atualiza o status da meta
+                    localStorage.setItem('metas', JSON.stringify(metas)); // Salva as alterações
+                    carregarMetas();  // Atualiza a lista
+                };
+
+                // Cria o texto da tarefa
+                const textoMeta = document.createElement('span');
+                textoMeta.textContent = meta.texto;
+
+                // Aplica o estilo se a tarefa estiver concluída
+                if (meta.concluida) {
+                    textoMeta.classList.add('meta-completa');
+                }
+
+                // Botão de remover
+                const removeButton = document.createElement('span');
+                removeButton.textContent = ' Remover';
+                removeButton.classList.add('remove');
+                removeButton.onclick = () => removerMeta(index);
+
+                // Adiciona o checkbox, o texto e o botão de remover ao item
+                li.appendChild(checkbox);
+                li.appendChild(textoMeta);
+                li.appendChild(removeButton);
+                listaMetas.appendChild(li);
+            });
+        }
+
+        // Função para adicionar uma meta
+        function adicionarMeta() {
+            const metaInput = document.getElementById('metaInput');
+            const metaTexto = metaInput.value.trim();
+
+            if (metaTexto) {
+                const metas = JSON.parse(localStorage.getItem('metas')) || [];
+                const novaMeta = {
+                    texto: metaTexto,
+                    concluida: false  // Definindo o status inicial da tarefa como "não concluída"
+                };
+                metas.push(novaMeta);
+                localStorage.setItem('metas', JSON.stringify(metas));
+                metaInput.value = '';  // Limpa o campo de entrada
+                carregarMetas();  // Atualiza a lista
+            } else {
+                alert('Por favor, digite uma meta.');
+            }
+        }
+
+        // Função para remover uma meta
+        function removerMeta(index) {
+            const metas = JSON.parse(localStorage.getItem('metas')) || [];
+            metas.splice(index, 1);
+            localStorage.setItem('metas', JSON.stringify(metas));
+            carregarMetas();  // Atualiza a lista
+        }
+
+        // Carregar as metas ao carregar a página
+        window.onload = carregarMetas;
+    </script>
+</body>
+</html>
