@@ -17,31 +17,95 @@ header {
     padding: 20px 0;
 }
 
-header .container {
-    width: 80%;
-    margin: 0 auto;
-    text-align: center;
+a {
+    display:table; /* Exibe como bloco */
+    width: 150px; /* Largura fixa */
+    height: 30px; /* Altura fixa */
+    line-height: 40px; /* Alinha verticalmente o texto */
+    font-size: 18px; /* Tamanho da fonte */
+    font-family: sans-serif; /* Fonte para links */
+    text-decoration: none; /* Remove sublinhado */
+    background-color: rgb(100, 177, 97); /* Cor de fundo */
+    color: #ffffff; /* Cor do texto */
+    border: 2px solid #333; /* Borda */
+    letter-spacing: 2px; /* Espaçamento entre letras */
+    text-align: center; /* Centraliza texto */
+    position: relative; /* Para posicionamento absoluto dos pseudo-elementos */
+    transition: all .35s; /* Efeito de transição */
 }
 
-header nav ul {
-    list-style: none;
+a span {
+    position: relative; /* Para sobreposição de z-index */
+    z-index: 2; /* Coloca o texto acima do fundo */
+}
+
+a:after {
+    position: absolute; /* Posiciona o pseudo-elemento */
+    content: ""; /* Necessário para pseudo-elementos */
+    top: 0; /* Alinha ao topo */
+    left: 0; /* Alinha à esquerda */
+    width: 0; /* Inicia com largura 0 */
+    height: 100%; /* Altura total do link */
+    background: #1e4621; /* Cor de fundo do efeito */
+    transition: all .35s; /* Efeito de transição */
+}
+
+a:hover {
+    color: #fff; /* Muda a cor do texto ao passar o mouse */
+}
+
+a:hover:after {
+    width: 100%; /* Expande o fundo ao passar o mouse */
+}
+
+/* Navegação */
+nav {
+    background-color: rgb(42, 88, 58);
+    padding: 10px 0;
+    width: 100%;
+    overflow-x: auto; /* Permite rolagem horizontal se necessário */
+    align-items: center;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
     padding: 0;
+    display:flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Permite que os itens quebrem para nova linha */
+    min-width: fit-content; /* Garante que a lista não quebre desnecessariamente */
 }
 
-header nav ul li {
-    display: inline;
-    margin: 0 15px;
+nav ul li {
+    margin: 5px 10px; /* Reduzi a margem para economizar espaço */
+    white-space: nowrap; /* Impede que o texto quebre em várias linhas */
 }
 
-header nav ul li a {
+nav ul li a {
     color: white;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 16px; /* Reduzi um pouco o tamanho da fonte */
+    transition: color 0.3s;
+    padding: 5px 10px; /* Adicionei padding para melhor toque */
 }
 
-header nav ul li a:hover {
-    text-decoration: underline;
+/* Estilo para telas menores */
+@media (max-width: 768px) {
+    nav ul {
+        justify-content: flex-start; /* Alinha à esquerda em telas pequenas */
+    }
+    
+    nav ul li a {
+        font-size: 14px; /* Tamanho menor para telas pequenas */
+    }
+    
+    /* Remove os elementos <hr> visuais */
+    nav hr {
+        display: none;
+    }
 }
+
 
 section {
     padding: 40px 0;
