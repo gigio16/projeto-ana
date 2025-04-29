@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EcoWeb - Painel de Sustentabilidade</title>
+  <link rel="icon" href="logo_EcoWeb.png" type="image/png">
+  <link rel="stylesheet" href="grafico.css">
+</head>
+<body>
+  <header>
+    <img src="logo_EcoWeb.png" alt="EcoWeb Logo">
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#calendario">Calendário</a>
+      <a href="#login">Login</a>
+      <a href="#cadastro">Cadastro</a>
+      <a href="#metas">Metas</a>
+      <a href="#doacao">Doação de Alimentos</a>
+      <a href="#mapa">Mapa</a>
+      <a href="#sobre">Sobre Nós</a>
+      <a href="#usuario">Usuário</a>
+    </nav>
+    <div class="search-bar">
+      <input type="text" placeholder="Pesquisar...">
+    </div>
+  </header>
+
+  <main>
+    <h1>Painel de Gráficos de Sustentabilidade</h1>
+
+    <div class="chart-container">
+      <canvas id="grafico1"></canvas>
+    </div>
+
+    <div class="chart-container">
+      <canvas id="grafico2"></canvas>
+    </div>
+
+    <div class="chart-container">
+      <canvas id="grafico3"></canvas>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="grafico.js"></script>
+</body>
+</html>
