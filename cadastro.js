@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Fazer uma requisição para buscar os responsáveis
+    // Fazer uma requisição para buscar os usuários
     fetch('/usuarios')
         .then(response => response.json())
         .then(data => {
