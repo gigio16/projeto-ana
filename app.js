@@ -1,4 +1,5 @@
 
+const crypto = require('crypto');
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
@@ -17,7 +18,7 @@ app.use(express.json());
 
 
 // Rota para exibir o formulário de cadastro de usuário (Cadastro.html)
-app.get('/usuario', (req, res) => {
+app.get('/usuarios', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'Cadastro.html'));
 });
 
@@ -82,15 +83,28 @@ app.get('/api/tarefas', (req, res) => {
 
 // Rota POST para cadastrar um responsável e salvar no arquivo JSON
 app.post('/CadastroUsuario', (req, res) => {
-    const { nome, email } = req.body;
+    const { nome, email, senha } = req.body;
 
-
-    if (!nome) {
-        return res.status(400).json({ success: false, message: 'Nome do usuário é obrigatório.' });
+    if (!nome || !email || !senha) {
+        return res.status(400).json({ success: false, message: 'Todos os campos são obrigatórios.' });
     }
 
-
     const filePath = path.join(__dirname, 'data', 'usuarios.json');
+
+    //gerar ID
+    const id = crypto.randomBytes(16).toString('hex');
+    
+    fs.readFile(filePath, 'utf8', (err, data) => {
+        let usuarios = [];
+        if (!err && data) {
+            try {
+                usuarios = JSON.parse(data);
+            } catch (parseError) {
+                console.error('Erro ao parsear JSON:', parseError);
+                return res.status(500).json({ success: false, message: 'Erro no servidor' });
+            }
+        }
+
     fs.readFile(filePath, 'utf8', (err, data) => {
         if (err) {
             console.error('Erro ao ler o arquivo JSON:', err);
@@ -123,6 +137,41 @@ app.post('/CadastroUsuario', (req, res) => {
     });
 });
 
+ // Verificar se usuário já existe
+ if (usuarios.some(u => u.email === email)) {
+    return res.status(400).json({ success: false, message: 'E-mail já cadastrado' });
+}
+
+const novoUsuario = {
+    id,
+    nome,
+    email,
+    senha: crypto.createHash('sha256').update(senha).digest('hex'), // Hash da senha
+    dataCriacao: new Date().toISOString()
+};
+
+usuarios.push(novoUsuario);
+
+fs.writeFile(filePath, JSON.stringify(usuarios, null, 2), (err) => {
+    if (err) {
+        console.error('Erro ao salvar:', err);
+        return res.status(500).json({ success: false, message: 'Erro ao salvar usuário' });
+    }
+    res.status(201).json({ success: true, message: 'Usuário criado com sucesso!' });
+});
+});
+
+// Adicionar rotas CRUD completas
+app.route('/usuarios/:id')
+    .get((req, res) => {
+        // Implementar busca de usuário
+    })
+    .put((req, res) => {
+        // Implementar atualização
+    })
+    .delete((req, res) => {
+        // Implementar exclusão
+    });
 
 // Rota POST para cadastrar uma nova tarefa
 app.post('/tarefas', (req, res) => {

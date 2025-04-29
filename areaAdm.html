@@ -65,10 +65,6 @@
                             <i class="fas fa-arrow-left"></i> Voltar para a Página Principal
                         </a>
                     </div>
-                    <div class="notifications">
-                        <i class="fas fa-bell"></i>
-                        <span class="notification-count"></span>
-                    </div>
                     <div class="user"></div>
                         <a href="loginAdm.html">
                         <img src="https://via.placeholder.com/40" alt="User">
@@ -174,118 +170,66 @@
                     </div>
                 </div>
 
-                <!-- Usuários -->
-                <div id="usuarios-content" class="content-section">
-                    <div class="section-header">
-                        <h2>Gestão de Usuários</h2>
-                        <button class="btn btn-primary" id="add-user-btn">
-                            <i class="fas fa-plus"></i> Adicionar Usuário
-                        </button>
-                    </div>
+               <!-- Usuários -->
+<div id="usuarios-content" class="content-section">
+    <div class="section-header">
+        <h2>Gestão de Usuários</h2>
+        <button class="btn btn-primary" id="add-user-btn">
+            <i class="fas fa-plus"></i> Adicionar Usuário
+        </button>
+    </div>
 
-                    <div class="user-filters">
-                        <div class="filter-group">
-                            <label for="user-role">Filtrar por:</label>
-                            <select id="user-role">
-                                <option value="all">Todos os usuários</option>
-                                <option value="admin">Administradores</option>
-                                <option value="editor">Editores</option>
-                                <option value="viewer">Visualizadores</option>
-                            </select>
-                        </div>
-                        <div class="filter-group">
-                            <label for="user-status">Status:</label>
-                            <select id="user-status">
-                                <option value="all">Todos</option>
-                                <option value="active">Ativos</option>
-                                <option value="inactive">Inativos</option>
-                                <option value="blocked">Bloqueados</option>
-                            </select>
-                        </div>
-                        <div class="filter-group">
-                            <button class="btn btn-secondary">
-                                <i class="fas fa-filter"></i> Aplicar Filtros
-                            </button>
-                        </div>
-                    </div>
+    <div class="user-filters">
+        <div class="filter-group">
+            <label for="user-role">Filtrar por:</label>
+            <select id="user-role">
+                <option value="all">Todos os usuários</option>
+                <option value="admin">Administradores</option>
+                <option value="editor">Editores</option>
+                <option value="viewer">Visualizadores</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label for="user-status">Status:</label>
+            <select id="user-status">
+                <option value="all">Todos</option>
+                <option value="active">Ativos</option>
+                <option value="inactive">Inativos</option>
+                <option value="blocked">Bloqueados</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <button class="btn btn-secondary" id="apply-filters">
+                <i class="fas fa-filter"></i> Aplicar Filtros
+            </button>
+        </div>
+    </div>
 
-                    <div class="users-table">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Nome</th>
-                                    <th>Email</th>
-                                    <th>Perfil</th>
-                                    <th>Status</th>
-                                    <th>Último Login</th>
-                                    <th>Ações</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>
-                                        <div class="user-avatar">
-                                            <img src="https://via.placeholder.com/30" alt="User">
-                                            <span>João Silva</span>
-                                        </div>
-                                    </td>
-                                    <td>joao.silva@empresa.com</td>
-                                    <td><span class="badge badge-admin">Administrador</span></td>
-                                    <td><span class="badge badge-active">Ativo</span></td>
-                                    <td>29/04/2023 14:30</td>
-                                    <td>
-                                        <button class="btn-action btn-edit"><i class="fas fa-edit"></i></button>
-                                        <button class="btn-action btn-delete"><i class="fas fa-trash"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>
-                                        <div class="user-avatar">
-                                            <img src="https://via.placeholder.com/30" alt="User">
-                                            <span>Maria Oliveira</span>
-                                        </div>
-                                    </td>
-                                    <td>maria.oliveira@empresa.com</td>
-                                    <td><span class="badge badge-editor">Editor</span></td>
-                                    <td><span class="badge badge-active">Ativo</span></td>
-                                    <td>29/04/2023 14:15</td>
-                                    <td>
-                                        <button class="btn-action btn-edit"><i class="fas fa-edit"></i></button>
-                                        <button class="btn-action btn-delete"><i class="fas fa-trash"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>
-                                        <div class="user-avatar">
-                                            <img src="https://via.placeholder.com/30" alt="User">
-                                            <span>Carlos Santos</span>
-                                        </div>
-                                    </td>
-                                    <td>carlos.santos@empresa.com</td>
-                                    <td><span class="badge badge-viewer">Visualizador</span></td>
-                                    <td><span class="badge badge-inactive">Inativo</span></td>
-                                    <td>28/04/2023 09:45</td>
-                                    <td>
-                                        <button class="btn-action btn-edit"><i class="fas fa-edit"></i></button>
-                                        <button class="btn-action btn-delete"><i class="fas fa-trash"></i></button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+    <div class="users-table">
+        <table id="users-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Perfil</th>
+                    <th>Status</th>
+                    <th>Último Login</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="users-table-body">
+                <!-- Os usuários serão carregados via JavaScript -->
+            </tbody>
+        </table>
+    </div>
 
-                    <div class="pagination">
-                        <button class="btn-pagination"><i class="fas fa-chevron-left"></i></button>
-                        <button class="btn-pagination active">1</button>
-                        <button class="btn-pagination">2</button>
-                        <button class="btn-pagination">3</button>
-                        <button class="btn-pagination"><i class="fas fa-chevron-right"></i></button>
-                    </div>
-                </div>
+        <div class="pagination">
+            <button class="btn-pagination" id="prev-page"><i class="fas fa-chevron-left"></i></button>
+            <div id="page-numbers" class="page-numbers"></div>
+            <button class="btn-pagination" id="next-page"><i class="fas fa-chevron-right"></i></button>
+        </div>
+</div>
 
                 <!-- Permissões -->
                 <div id="permissoes-content" class="content-section">
@@ -539,56 +483,75 @@
         </div>
     </div>
 
-    <!-- Add User Modal -->
-    <div class="modal" id="add-user-modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Adicionar Novo Usuário</h3>
-                <button class="close-modal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <form id="add-user-form">
-                    <div class="form-group">
-                        <label for="new-user-name">Nome Completo</label>
-                        <input type="text" id="new-user-name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="new-user-email">Email</label>
-                        <input type="email" id="new-user-email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="new-user-username">Nome de Usuário</label>
-                        <input type="text" id="new-user-username" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="new-user-password">Senha</label>
-                        <input type="password" id="new-user-password" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="new-user-role">Perfil</label>
-                        <select id="new-user-role" required>
-                            <option value="">Selecione...</option>
-                            <option value="admin">Administrador</option>
-                            <option value="editor">Editor</option>
-                            <option value="viewer">Visualizador</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="new-user-status">Status</label>
-                        <select id="new-user-status" required>
-                            <option value="active" selected>Ativo</option>
-                            <option value="inactive">Inativo</option>
-                            <option value="blocked">Bloqueado</option>
-                        </select>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary close-modal">Cancelar</button>
-                <button class="btn btn-primary" id="confirm-add-user">Salvar</button>
-            </div>
+    <!-- User Modal -->
+<div class="modal" id="user-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 id="modal-title">Adicionar Novo Usuário</h3>
+            <button class="close-modal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <form id="user-form">
+                <input type="hidden" id="user-id">
+                <div class="form-group">
+                    <label for="user-name">Nome Completo</label>
+                    <input type="text" id="user-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="user-email">Email</label>
+                    <input type="email" id="user-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="user-username">Nome de Usuário</label>
+                    <input type="text" id="user-username" required>
+                </div>
+                <div class="form-group">
+                    <label for="user-password">Senha</label>
+                    <input type="password" id="user-password">
+                    <small class="form-text">Deixe em branco para manter a senha atual</small>
+                </div>
+                <div class="form-group">
+                    <label for="user-role">Perfil</label>
+                    <select id="user-role" required>
+                        <option value="">Selecione...</option>
+                        <option value="admin">Administrador</option>
+                        <option value="editor">Editor</option>
+                        <option value="viewer">Visualizador</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="user-status">Status</label>
+                    <select id="user-status" required>
+                        <option value="active">Ativo</option>
+                        <option value="inactive">Inativo</option>
+                        <option value="blocked">Bloqueado</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary close-modal">Cancelar</button>
+            <button class="btn btn-primary" id="save-user">Salvar</button>
         </div>
     </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal" id="delete-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Confirmar Exclusão</h3>
+            <button class="close-modal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <p>Tem certeza que deseja excluir este usuário? Esta ação não pode ser desfeita.</p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary close-modal">Cancelar</button>
+            <button class="btn btn-danger" id="confirm-delete">Excluir</button>
+        </div>
+    </div>
+</div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="areaAdm.js"></script>

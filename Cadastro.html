@@ -10,14 +10,14 @@
 <body>
      <!-- Botão Voltar -->
      <div class="back-button">
-        <a href="index.html" class="btn-back">
+        <a href="/index.html" class="btn-back">
             <i class="fas fa-arrow-left"></i> Voltar para a Página Principal
         </a>
     </div>
 
     <div class="form-container">
         <h2>Cadastrar Usuário</h2>
-        <form action="/usuarios" method="POST">
+        <form id="cadastroForm" method="POST">
 
             <div class="form-group">
                 <label for="nome">Nome Completo:</label>
@@ -48,12 +48,14 @@
                 <button type="submit">Cadastrar</button>
             </div>
             <div>
-                <p>Não é usúario? <a href="cadAdm.html">Click aqui!</a></p></div>
+                <p>Não é usúario? <a href="/cadAdm.html">Click aqui!</a></p></div>
             <div class="form-group">
-                <p>Esqueceu a senha? <a href="recusenha.html">Recupere sua senha</a></p>
+                <p>Esqueceu a senha? <a href="/recusenha.html">Recupere sua senha</a></p>
             </div>
 
         </form>
     </div>
 </body>
+
+<script src="/cadastro.js"></script>
 </html>
